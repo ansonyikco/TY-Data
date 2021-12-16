@@ -196,11 +196,6 @@ def main(P,T,N):
        
       
 
-        import altair as alt
-        c = alt.Chart(df_p).mark_line().encode(
-            x=alt.X('Time', axis=alt.Axis(labelOverlap="greedy",grid=False)),
-            y=alt.Y('ODO'))
-        st.plotly_chart(c, use_container_width=False)
         
         st.plotly_chart(df_p,height=400,width=1600)
         
