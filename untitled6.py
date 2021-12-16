@@ -185,9 +185,12 @@ def main(P,T,N):
         
         df = data_cleaning (node_list)
         st.write(df)
-        ndf = df[["flow_pressure","Flow_Rate"]]
+        df_p = df["flow_pressure"]
+        df_r = df["Flow_Rate"]
         hd = [ df['flow_pressure'].tolist(), df['Flow_Rate'].tolist()]
-        ndf.index = df['Time'].tolist()
+        df_p.index = df['Time'].tolist()
+        df_r.index = df['Time'].tolist()
+        
         st.subheader('Historical Data of : '+N)
         
        
