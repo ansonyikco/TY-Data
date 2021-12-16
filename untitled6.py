@@ -200,13 +200,13 @@ def main(P,T,N):
         c = alt.Chart(df_p).mark_line().encode(
             x=alt.X('Time', axis=alt.Axis(labelOverlap="greedy",grid=False)),
             y=alt.Y('ODO'))
-        st.altair_chart(c, use_container_width=False)
+        st.plotly_chart(c, use_container_width=False)
         
-        st.line_chart(df_p,height=400,width=1600)
+        st.plotly_chart(df_p,height=400,width=1600)
         
         
         
-        st.line_chart(df_r,height=400,width=1600)
+        st.plotly_chart(df_r,height=400,width=1600)
         
         
         
