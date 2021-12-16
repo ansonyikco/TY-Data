@@ -192,7 +192,7 @@ def main(P,T,N):
         df_r.index = df['Time'].tolist()
         
         st.subheader('Historical Data of : '+N)
-        
+        df_r.plot()
        
       
 
