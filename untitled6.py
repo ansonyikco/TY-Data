@@ -197,10 +197,10 @@ def main(P,T,N):
       
 
         import altair as alt
-        chart = alt.Chart(df_p).mark_line().encode(
+        c = alt.Chart(df_p).mark_line().encode(
             x=alt.X('Time', axis=alt.Axis(labelOverlap="greedy",grid=False)),
             y=alt.Y('ODO'))
-        st.line_chart(chart)
+        st.altair_chart(c, use_container_width=False)
         
         st.line_chart(df_p,height=400,width=1600)
         
