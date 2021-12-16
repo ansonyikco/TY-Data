@@ -192,16 +192,16 @@ def main(P,T,N):
         df_r.index = df['Time'].tolist()
         
         st.subheader('Historical Data of : '+N)
-        df_r.plot()
+      
        
       
 
         
-        st.plotly_chart(df_p,height=400,width=1600)
+        st.line_chart(df_r.plot(),height=400,width=1600)
         
         
         
-        st.plotly_chart(df_r,height=400,width=1600)
+        st.line_chart(df_r,height=400,width=1600)
         
         
         
