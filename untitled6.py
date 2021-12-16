@@ -16,7 +16,7 @@ import csv
 import re
 import pandas as pd
 import glob
-import plotly.figure_factory as ff
+
 import requests
 st.set_page_config(layout="wide")
 
