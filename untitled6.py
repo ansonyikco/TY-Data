@@ -197,11 +197,11 @@ def main(P,T,N):
       
 
         
-        st.plotly_chart(df_p,height=400,width=1600)
+        st.line_chart(df_p,height=400,width=1600)
         
         
         
-        st.plotly_chart(df_r,height=400,width=1600)
+        st.line_chart(df_r,height=400,width=1600)
         
         
         
