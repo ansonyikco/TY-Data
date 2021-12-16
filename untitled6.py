@@ -196,6 +196,7 @@ def main(P,T,N):
        
       
 
+        df_p = pd.read_csv(df_p, index_col=0, parse_dates=True)
         
         st.line_chart(df_p,height=400,width=1600)
         
