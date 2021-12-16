@@ -197,7 +197,7 @@ def main(P,T,N):
       
 
         
-        st.line_chart(df_r.plot(),height=400,width=1600)
+        st.line_chart(df_p,height=400,width=1600)
         
         
         
