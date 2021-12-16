@@ -16,8 +16,8 @@ import csv
 import re
 import pandas as pd
 import glob
-#import plotly.figure_factory as ff
-
+import plotly.figure_factory as ff
+import requests
 st.set_page_config(layout="wide")
 
 col1, col2, col3 = st.columns(3)
@@ -53,30 +53,14 @@ from PIL import Image
 
     
     
-def check_downloaded(current_time):
+def check_downloaded(data):
+    if "Error" in data: 
+        status = False
+    else :
+        status = True 
+        
+    return status
     
-    path = 'C:\\Users\lsgi_util_lab\Downloads'
-    current_min = current_time.minute
-    current_hour = current_time.hour
-    current_day = current_time.day
-    current_month = current_time.month
-    current_year = current_time.year
-    
-    list_of_files = glob.glob(path+'/*.txt') +glob.glob(path+'/*.csv')# * means all if need specific format then *.csv
-    
-    latest_file = max(list_of_files, key=os.path.getctime)
-    
-    created = os.path.getctime(latest_file)
-    
-    year,month,day,hour,minute,second=time.localtime(created)[:-3]
-    
-    
-
-    if minute >= current_min and hour>=current_hour and day>=current_day and month>=current_month and year>=current_year :
-        print("file downloaded after click"+'\n')
-        return latest_file
-    else: 
-        return "No file downloaded"
 
 
 def download_data(mode,P,T,gv):
@@ -113,28 +97,26 @@ def download_data(mode,P,T,gv):
             endtime = str(now_date_time.strftime('%Y-%m-%d+%H:%M'))
             starttime = str(last_24hour_date_time.strftime('%Y-%m-%d+%H:%M'))
     
+    
     url = "http://59.148.216.10/datagate/api/DataExportAPI.ashx?format=csv&user=lsgi&pass=P@ssw0rd&logger="+gv+"&period=5&startdate="+starttime+"&enddate="+endtime+"&flowunits=1&pressureunits=1&enablestitching=True&interval=1"
-    webbrowser.register('chrome',
-	None,
-	webbrowser.BackgroundBrowser("C:\Program Files\Google\Chrome\Application\chrome.exe"))
-    webbrowser.get('chrome').open(url,new=0)
+    print (url)
+    r = requests.post(url)
+    print (r.text)
+    return r.text
 
-def data_simulator(fn,item):
+def data_simulator(item):
     data = "Site,"+item+",s,s"+item+"\n"
     return data 
-def open_file(filename,item):
+def open_file(lines,item):
 
     node_list = []
-    with open(filename) as f:
-        lines = f.read()
-        if 'export' not in filename :
-            lines = data_simulator(filename,item)+lines
-            
-        
+    if item != 'all':
+        lines = data_simulator(item)+lines
+
     GV_data = lines.split("Site,")
-    for each in GV_data:
+    for each in GV_data:    
         if "GV" in each or "FM" in each:
-            each = re.split(',|\*|\n',each)
+            each = re.split(',|\*|\n|\r\n',each)
             
             node_list.append(each)
     return node_list
@@ -185,37 +167,22 @@ def main(P,T,N):
     
 
     x = 2
-    while x ==1:
-        current_time = datetime.datetime.now()
-        if current_time.minute%5 ==0:
-        
-            download_data()
-            time.sleep(40)
-            file = check_downloaded(current_time)
-            
-            node_list = open_file(file)
-            df = data_cleaning (node_list)
-            print (df)
-            time.sleep(20)
-            
-        else:
-            time.sleep(30)
+
     
     if x ==2:
         print("Once")
         current_time = datetime.datetime.now()
-        download_data("Simulated Time",P,T,N)
+        data = download_data("Simulated Time",P,T,N)
         st.write("Downloading Data")
-        my_bar = st.progress(0)
-
-        for percent_complete in range(100):
-            time.sleep(0.2)
-            my_bar.progress(percent_complete + 1)
-        my_bar.empty()
         
-        file = check_downloaded(current_time)
+        status = check_downloaded(data)
+        if status:
+            print ("ok")
+        else: 
+            st.write("Oh, there are errors so data is not available.")
+            
+        node_list = open_file(data,N)
         
-        node_list = open_file(file,N)
         df = data_cleaning (node_list)
         st.write(df)
         ndf = df[["flow_pressure","Flow_Rate"]]
@@ -241,26 +208,7 @@ def main(P,T,N):
         
         
         
-        
-            
 
-    # You can call any Streamlit command, including custom components:
- 
-    # Some number in the range 0-23
-       
-        
-        
-
-
-
-
-
-
-
-
-
-
-    
     
 st.header("Select the operation mode : ")
 genre = st.radio(
@@ -313,6 +261,3 @@ else:
         main('',add_selectbox1,user_input)
 
 
-
-
-    
