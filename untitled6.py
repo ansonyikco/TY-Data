@@ -194,20 +194,14 @@ def main(P,T,N):
         st.subheader('Historical Data of : '+N)
         
        
-        import plotly.express as px
+      
 
         
-        fig = px.line(df, x='Time', y="flow_pressure")
-        fig.update_layout(height=400,width=1600)
-
-        
-        st.plotly_chart(fig,height=400,width=1600)
+        st.plotly_chart(df_p,height=400,width=1600)
         
         
-        fig1 = px.line(df, x='Time', y="Flow_Rate")
-        fig1.update_layout(height=400,width=1600)
-        fig1.update_yaxes(autorange=True)
-        st.plotly_chart(fig1,height=400,width=1600)
+        
+        st.plotly_chart(df_r,height=400,width=1600)
         
         
         
