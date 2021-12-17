@@ -185,13 +185,14 @@ def main(P,T,N):
         node_list = open_file(data,N)
         
         df = data_cleaning (node_list)
+        df['Time'] = pd.to_datetime(df['Time'], format='%d %b %Y%H:%M %p')
         st.write(df)
         df_p = df["flow_pressure"]
         df_r = df["Flow_Rate"]
         hd = [ df['flow_pressure'].tolist(), df['Flow_Rate'].tolist()]
         df_p.index = df['Time'].tolist()
         df_r.index = df['Time'].tolist()
-        pd.read_csv(df_p, index_col=0, parse_dates=True)
+        
         st.subheader('Historical Data of : '+N)
       
        
