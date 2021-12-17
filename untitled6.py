@@ -16,8 +16,9 @@ import csv
 import re
 import pandas as pd
 import glob
-import matplotlib as pt
+import matplotlib.pyplot as plt
 import requests
+import altair as alt
 st.set_page_config(layout="wide")
 
 col1, col2, col3 = st.columns(3)
