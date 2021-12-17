@@ -16,9 +16,9 @@ import csv
 import re
 import pandas as pd
 import glob
-import matplotlib.pyplot as plt
+
 import requests
-import altair as alt
+
 st.set_page_config(layout="wide")
 
 col1, col2, col3 = st.columns(3)
@@ -191,7 +191,7 @@ def main(P,T,N):
         hd = [ df['flow_pressure'].tolist(), df['Flow_Rate'].tolist()]
         df_p.index = df['Time'].tolist()
         df_r.index = df['Time'].tolist()
-        
+        pd.read_csv(df_p, index_col=0, parse_dates=True)
         st.subheader('Historical Data of : '+N)
       
        
