@@ -148,7 +148,7 @@ def data_cleaning (node_list):
             for i in range(int(epoch_number)):
                 time_index.append(int(epoch_number)-i-1)
                 raw_date = (each[7+(i)*4])
-                formated_date = format_date_for_arcgis(raw_date)
+                formated_date = format_date_for_dataframe(raw_date)
                 date_time.append(formated_date)
                 flow_pressure.append(float(each[8+(i)*4]))
                 Flow_Rate.append(float (each[9+(i)*4]))
