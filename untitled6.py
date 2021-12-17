@@ -121,12 +121,19 @@ def open_file(lines,item):
             
             node_list.append(each)
     return node_list
-def format_date_for_arcgis(raw):
-    y = raw[6:10]
-    m = raw[3:5]
-    d = raw[0:2]
-    t = raw[11:]
-    return (y+"-"+m+"-"+d+" "+t)
+def format_date_for_dataframe(raw):
+    y = int(raw[6:10])
+    mo = int(raw[3:5])
+    d = int(raw[0:2])
+    t = raw[11:].split(':')
+    h = int(t[0])
+    m = int(t[1])
+    print (m)
+    x = datetime.datetime(y, mo, d,h,m)
+    
+    
+    
+    return x
 def data_cleaning (node_list):
     date_time = []
     flow_pressure = []
