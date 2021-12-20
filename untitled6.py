@@ -16,7 +16,7 @@ import csv
 import re
 import pandas as pd
 import glob
-import scipy
+
 from matplotlib import pyplot
 import requests
 
