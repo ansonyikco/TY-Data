@@ -17,7 +17,7 @@ import re
 import pandas as pd
 import glob
 
-from matplotlib import pyplot
+
 import requests
 
 st.set_page_config(layout="wide")
