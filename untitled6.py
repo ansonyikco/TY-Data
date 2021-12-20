@@ -16,7 +16,7 @@ import csv
 import re
 import pandas as pd
 import glob
-from scipy.optimize import curve_fit
+import sklearn
 from matplotlib import pyplot
 import requests
 
