@@ -105,12 +105,12 @@ def download_data(mode,P,T,gv):
 
     if mode =="Simulated Time" :
         if T =="Past 1 hour":
-            SIM_date_time = datetime.now() - timedelta(hours = 241) 
+            SIM_date_time = now_date_time - timedelta(hours = 241) 
             SIM_END = SIM_date_time + timedelta(hours = 1)
             starttime = str(SIM_date_time.strftime('%Y-%m-%d+%H:%M'))
             endtime = str(SIM_END.strftime('%Y-%m-%d+%H:%M'))
         if T =="Past 24 hours":
-            SIM_date_time = datetime.now() - timedelta(hours = 240) -  timedelta(hours = 24)
+            SIM_date_time = now_date_time - timedelta(hours = 240) -  timedelta(hours = 24)
             SIM_END = SIM_date_time + timedelta(hours = 24)
             starttime = str(SIM_date_time.strftime('%Y-%m-%d+%H:%M'))
             endtime = str(SIM_END.strftime('%Y-%m-%d+%H:%M'))
