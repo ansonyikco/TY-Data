@@ -238,8 +238,7 @@ def main(P,T,N,window,data_mode,Deg):
     
     if x ==2:
         print("Once")
-        current_time = datetime.datetime.now()+  timedelta(hours = 8)
-        st.metric('Request Time : ', current_time.strftime("%d/%m/%Y, %H:%M:%S"))
+        
         data = download_data(data_mode,P,T,N)
         
         
