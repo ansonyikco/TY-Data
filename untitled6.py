@@ -97,9 +97,10 @@ def download_data(mode,P,T,gv):
     if gv != "all": gv = "site:"+gv
         
     from datetime import datetime, timedelta
-    last_hour_date_time = datetime.now() - timedelta(hours = 1)
-    last_24hour_date_time = datetime.now() - timedelta(hours = 24)
     now_date_time = datetime.now() +  timedelta(hours = 8)
+    last_hour_date_time = now_date_time - timedelta(hours = 1)
+    last_24hour_date_time = now_date_time - timedelta(hours = 24)
+    
     
     st.write(str(now_date_time.strftime('%Y-%m-%d+%H:%M')))
 
@@ -237,7 +238,7 @@ def main(P,T,N,window,data_mode,Deg):
     
     if x ==2:
         print("Once")
-        current_time = datetime.datetime.now()
+        current_time = datetime.datetime.now()+  timedelta(hours = 8)
         st.metric('Request Time : ', current_time.strftime("%d/%m/%Y, %H:%M:%S"))
         data = download_data(data_mode,P,T,N)
         
