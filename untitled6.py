@@ -99,7 +99,7 @@ def download_data(mode,P,T,gv):
     from datetime import datetime, timedelta
     last_hour_date_time = datetime.now() - timedelta(hours = 1)
     last_24hour_date_time = datetime.now() - timedelta(hours = 24)
-    now_date_time = datetime.now()
+    now_date_time = datetime.now() +  timedelta(hours = 8)
     
     st.write(str(now_date_time.strftime('%Y-%m-%d+%H:%M')))
 
